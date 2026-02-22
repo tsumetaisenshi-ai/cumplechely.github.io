@@ -19,7 +19,7 @@ body{
   width:100vw;
 }
 
-/* Estrellas: twinkle continuo (duración/delay se asignan con JS) */
+/* Estrellas */
 .star{
   position:absolute;
   width:2px;
@@ -46,7 +46,7 @@ body{
   box-shadow:0 0 5vw #9f8cff;
 }
 
-/* pantalla inicio */
+/* inicio */
 .start{z-index:6;text-align:center;transition:.45s}
 .start.fade{opacity:0;pointer-events:none}
 .start h1{
@@ -74,19 +74,12 @@ body{
   animation:pulse 1.4s infinite;
   transition:opacity 1.2s ease, transform 1.5s ease;
 }
-.heart.fade{
-  opacity:0;
-  pointer-events:none;
-}
+.heart.fade{opacity:0;pointer-events:none}
 .heart:before,.heart:after{
   content:"";position:absolute;width:100%;height:100%;background:#a455d6;border-radius:50%;
 }
 .heart:before{top:-50%;left:0}
 .heart:after{left:50%;top:0}
-.heart i{
-  position:absolute;width:25%;height:8%;background:rgba(255,255,255,.75);
-  border-radius:50%;top:-5%;left:18%;filter:blur(0.2vw);transform:rotate(25deg);
-}
 @keyframes pulse{0%,100%{transform:rotate(-45deg) scale(1)}50%{transform:rotate(-45deg) scale(1.08)}}
 
 /* carta */
@@ -117,7 +110,7 @@ body{
   text-shadow:0 0 1vw #d49cff,0 0 2vw #b46cff,0 0 5vw #7a3cff;
 }
 
-/* título elegante animado */
+/* título */
 .title{
   position:absolute;
   top:10%;
@@ -131,51 +124,39 @@ body{
   background:linear-gradient(180deg,#f3d8ff,#c58cff,#8c45ff);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  text-shadow:0 0.3vw 0 #5b2c82,0 1vw 3vw rgba(190,120,255,.6),0 0 2vw rgba(180,90,255,.8);
   opacity:0;
   transition:.7s;
-  animation:floatTitle 3s ease-in-out infinite alternate;
 }
 .title.show{opacity:1;}
-@keyframes floatTitle{0%{transform:translateY(0);}50%{transform:translateY(-2vh);}100%{transform:translateY(0);}}
 
-/* tulipanes */
+/* tulipanes MÁS GRANDES */
 .flowers{
   position:absolute;
   bottom:0;left:50%;
   transform:translateX(-50%);
   display:flex;
   gap:4vw;
-  font-size:12vw;
+  font-size:15vw; /* aumentado */
   opacity:0;
   transition:1.2s;
 }
 .flowers.show{opacity:1;}
-.tulipan{ transform:translateY(50%) scale(0); opacity:0; animation-fill-mode: forwards; display:inline-block;}
-.flowers.show .t1{animation:florecer 0.6s forwards .2s, sway 3s ease-in-out infinite;}
-.flowers.show .t2{animation:florecer 0.6s forwards .5s, sway 3s ease-in-out infinite;}
-.flowers.show .t3{animation:florecer 0.6s forwards .8s, sway 3s ease-in-out infinite;}
-.flowers.show .t4{animation:florecer 0.6s forwards 1.1s, sway 3s ease-in-out infinite;}
-.flowers.show .t5{animation:florecer 0.6s forwards 1.4s, sway 3s ease-in-out infinite;}
-.flowers.show .t6{animation:florecer 0.6s forwards 1.7s, sway 3s ease-in-out infinite;}
-@keyframes florecer{0%{transform:translateY(50%) scale(0);opacity:0;}100%{transform:translateY(0) scale(1);opacity:1;}}
-@keyframes sway{0%{transform:translateY(0) translateX(0) scale(1)}25%{transform:translateY(-1%) translateX(2%) scale(1.02)}50%{transform:translateY(0)}75%{transform:translateY(-1%) translateX(-2%) scale(1.02)}100%{transform:translateY(0) translateX(0) scale(1)}}
 
-/* cuadro de mensaje central (MAS ALTO) */
+/* CUADRO MÁS GRANDE Y TEXTO MAYOR */
 .messageBox{
   position:absolute;
   top:55%;
   left:50%;
   transform:translate(-50%,-50%);
-  width:70vw;           /* espacio más amplio */
-  max-width:980px;
-  min-height:14vw;      /* MÁS alto */
-  padding:3.2vw;
+  width:75vw;
+  max-width:1050px;
+  min-height:18vw;
+  padding:4vw;
   background:rgba(255,255,255,0.26);
-  border-radius:1.2vw;
+  border-radius:1.5vw;
   text-align:center;
   font-family:"Times New Roman", serif;
-  font-size:2.8vw;
+  font-size:3.2vw; /* aumentado */
   opacity:0;
   transition:opacity 1s ease;
   color:#fff;
@@ -185,9 +166,8 @@ body{
 }
 .messageBox.show{opacity:1;}
 
-/* estilos ligeros para la explosión final (corazones suaves) */
 .__finalContainer{ position:fixed; inset:0; pointer-events:none; z-index:9999; }
-.__finalSmall{ position:absolute; left:0; top:0; transform-origin:center center; transition: transform 1.1s cubic-bezier(.2,.8,.2,1), opacity 1.2s ease; will-change:transform,opacity; font-size:2.2vw; text-align:center; opacity:0;}
+.__finalSmall{ position:absolute; left:0; top:0; transform-origin:center center; transition: transform 1.1s cubic-bezier(.2,.8,.2,1), opacity 1.2s ease; font-size:2.2vw; text-align:center; opacity:0;}
 </style>
 </head>
 <body>
@@ -196,19 +176,13 @@ body{
 <div class="title" id="title">FELIZ<br>CUMPLEAÑOS<br>CHELY</div>
 <div class="count" id="count">3</div>
 
-<!-- tulipanes con emojis -->
 <div class="flowers" id="flowers">
-  <div class="tulipan t1">🌷</div>
-  <div class="tulipan t2">🌷</div>
-  <div class="tulipan t3">🌷</div>
-  <div class="tulipan t4">🌷</div>
-  <div class="tulipan t5">🌷</div>
-  <div class="tulipan t6">🌷</div>
+  <div>🌷</div><div>🌷</div><div>🌷</div>
+  <div>🌷</div><div>🌷</div><div>🌷</div>
 </div>
 
-<!-- cuadro con mensaje central -->
 <div class="messageBox" id="messageBox">
-  "Y si fueras mía <br>
+"Y si fueras mía <br>
 Te llenaría todo el día de sonrisas<br>
 Hasta en mis sueños tu boca presumiría<br>
 Quién diría<br>
@@ -227,233 +201,103 @@ Porque fueras mía"<br>
 <div class="start" id="start">
 <h1>TOCA PARA ABRIR 🥰</h1>
 <div class="line"></div>
-<div class="heart" id="heart"><i></i></div>
+<div class="heart" id="heart"></div>
 </div>
 
+<!-- MÚSICA -->
+<audio id="bgMusic" src="AMOR DE CINE-HUMBE.mpeg"></audio>
+
 <script>
-/* ----------------------------
-   STARS — crear cielo estrellado (twinkle continuo)
-   ----------------------------*/
+
+/* estrellas */
 for(let i=0;i<160;i++){
-  const s = document.createElement('div');
-  s.className = 'star';
-  s.style.left = (Math.random()*100) + 'vw';
-  s.style.top  = (Math.random()*100) + 'vh';
-  // Duración y retardo aleatorio para un parpadeo natural
-  const durMs = 1200 + Math.random()*3200; // 1.2s - 4s
-  const delayMs = Math.random()*1200;
-  s.style.animationDuration = (durMs/1000) + 's';
-  s.style.animationDelay = (delayMs/1000) + 's';
-  // ligera variación de tamaño
-  const px = 0.8 + Math.random()*2.2;
-  s.style.width = px + 'px';
-  s.style.height = px + 'px';
+  const s=document.createElement('div');
+  s.className='star';
+  s.style.left=Math.random()*100+'vw';
+  s.style.top=Math.random()*100+'vh';
+  s.style.animationDuration=(1.2+Math.random()*3)+'s';
   document.body.appendChild(s);
 }
 
-/* ----------------------------
-   Elementos base (NO alterar su lógica)
-   ----------------------------*/
-const start = document.getElementById('start');
-const heart = document.getElementById('heart');
-const letterWrap = document.getElementById('letterWrap');
-const cardArea = document.getElementById('cardArea');
-const count = document.getElementById('count');
-const flowers = document.getElementById('flowers');
-const title = document.getElementById('title');
-const messageBox = document.getElementById('messageBox');
+const heart=document.getElementById('heart');
+const start=document.getElementById('start');
+const letterWrap=document.getElementById('letterWrap');
+const cardArea=document.getElementById('cardArea');
+const count=document.getElementById('count');
+const flowers=document.getElementById('flowers');
+const title=document.getElementById('title');
+const messageBox=document.getElementById('messageBox');
+const music=document.getElementById('bgMusic');
 
-let opened = false;
-let finalReady = false;
-// running = true while an explosion sequence is in progress
-let running = false;
-
-/* ---------- HEART: abrir carta ---------- */
-heart.addEventListener('click', (e)=>{
-  e.stopPropagation();
-  heart.style.animation = 'none';
-  // pequeño reflow para asegurar estilos
-  void heart.offsetWidth;
+heart.onclick=()=>{
+  heart.style.animation='none';
   heart.classList.add('fade');
   start.classList.add('fade');
-  // pequeño tiempo antes de mostrar carta
-  setTimeout(()=> letterWrap.classList.add('show'), 160);
-});
+  setTimeout(()=>letterWrap.classList.add('show'),160);
+};
 
-/* ---------- CARD: cuenta regresiva y mostrar segunda página ---------- */
-cardArea.addEventListener('click', (e)=>{
-  e.stopPropagation();
-  if(opened) return;
-  opened = true;
+cardArea.onclick=()=>{
   cardArea.classList.add('fade');
+  let n=3;
+  count.style.opacity=1;
+  count.textContent=n;
 
-  // breve 'chispa' con las estrellas (subir opacidad momentánea)
-  const stars = document.querySelectorAll('.star');
-  stars.forEach((st, idx) => {
-    setTimeout(()=> { st.style.opacity = '1'; }, idx * 6);
-    setTimeout(()=> { st.style.opacity = '0.18'; }, 700 + idx * 6);
-  });
-
-  // luego cuenta regresiva
-  setTimeout(()=>{
-    let n = 3;
-    count.style.opacity = 1;
-    count.textContent = n;
-    const id = setInterval(()=>{
-      n--;
-      if(n>0){
-        count.textContent = n;
-      } else {
-        clearInterval(id);
-        count.style.opacity = 0;
-        // mostrar segunda página
-        flowers.classList.add('show');
-        title.classList.add('show');
-        messageBox.classList.add('show');
-        finalReady = true;
+  const id=setInterval(()=>{
+    n--;
+    if(n>0){
+      count.textContent=n;
+      if(n===1){
+        music.volume=0.8;
+        music.play().catch(()=>{});
       }
-    }, 1000);
-  }, 900);
+    }else{
+      clearInterval(id);
+      count.style.opacity=0;
+      flowers.classList.add('show');
+      title.classList.add('show');
+      messageBox.classList.add('show');
+    }
+  },1000);
+};
+
+/* CORAZÓN FINAL MÁS REDONDO */
+(function(){
+document.addEventListener('click',()=>{
+if(!title.classList.contains('show'))return;
+
+const container=document.createElement('div');
+container.className='__finalContainer';
+document.body.appendChild(container);
+
+const total=320;
+const scale=0.55; /* reducido */
+for(let i=0;i<total;i++){
+const t=(i/total)*Math.PI*2;
+let x=16*Math.pow(Math.sin(t),3);
+let y=13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t);
+x*=scale;
+y*=scale*0.85; /* ajustado para redondear */
+
+const el=document.createElement('div');
+el.className='__finalSmall';
+el.textContent='💜';
+el.style.left=`calc(50vw + ${x}vw)`;
+el.style.top=`calc(50vh - ${y}vh)`;
+el.style.opacity=1;
+container.appendChild(el);
+
+setTimeout(()=>{
+const angle=Math.random()*Math.PI*2;
+const dist=30+Math.random()*40;
+el.style.transform=`translate(${Math.cos(angle)*dist}vw,${Math.sin(angle)*dist}vh)`;
+el.style.opacity=0;
+},1000);
+}
+
+setTimeout(()=>container.remove(),2500);
+
 });
-
-/* ----------------------------
-   ÚLTIMA PÁGINA — corazón grande hecho de corazones pequeños,
-   palpita (inflándose) 3s y luego explota suavemente (más fluido),
-   y se puede reactivar tocando otra vez.
-   ----------------------------*/
-(function addFinalBehavior(){
-  function secondShown(){
-    return title.classList.contains('show') && flowers.classList.contains('show') && messageBox.classList.contains('show');
-  }
-
-  async function runSequence(){
-    // prevent reentry while running
-    if(running) return;
-    running = true;
-
-    // 1) desvanecer elementos de segunda página
-    [title, flowers, messageBox].forEach(el=>{
-      if(!el) return;
-      el.style.transition = 'opacity .6s ease, transform .6s ease';
-      el.style.opacity = '0';
-    });
-
-    // 2) crear contenedor para corazón grande
-    const container = document.createElement('div');
-    container.className = '__finalContainer';
-    document.body.appendChild(container);
-
-    // 3) crear corazones pequeños en la ecuación del corazón
-    const hearts = [];
-    const total = 320; // densidad equilibrada
-    const scale = 0.62;
-    for(let i=0;i<total;i++){
-      const t = (i/total) * Math.PI * 2;
-      let x = 16 * Math.pow(Math.sin(t), 3);
-      let y = 13*Math.cos(t) - 5*Math.cos(2*t) - 2*Math.cos(3*t) - Math.cos(4*t);
-      x *= scale; y *= scale;
-
-      const el = document.createElement('div');
-      el.className = '__finalSmall';
-      el.textContent = '💜';
-      el.style.left = `calc(50vw + ${x}vw)`;
-      el.style.top  = `calc(50vh - ${y}vh)`;
-      el.style.fontSize = (1.3 + Math.random()*1.1) + 'vw';
-      el.style.opacity = '0';
-      el.style.transform = 'scale(0.92) rotate(0deg)';
-      container.appendChild(el);
-      hearts.push(el);
-    }
-
-    // 4) aparición suave y escalonada
-    hearts.forEach((h, idx)=>{
-      setTimeout(()=>{ h.style.opacity='1'; h.style.transform='scale(1) rotate(0deg)'; }, idx * 6);
-    });
-
-    // calcular retraso aproximado hasta que la silueta esté visible
-    const appearDelay = Math.min(1100, hearts.length * 6 + 120);
-
-    // 5) PALPITACIÓN (inflado) 3s
-    await new Promise(resolve => {
-      setTimeout(()=>{
-        if(container.animate){
-          container.animate([
-            { transform: 'scale(1)' },
-            { transform: 'scale(1.08)' },
-            { transform: 'scale(1)' },
-            { transform: 'scale(1.06)' },
-            { transform: 'scale(1)' }
-          ], { duration: 3000, iterations: 1, easing: 'ease-in-out' });
-        } else {
-          container.style.transition = 'transform .6s ease-in-out';
-          container.style.transform = 'scale(1.06)';
-          setTimeout(()=> container.style.transform = 'scale(1)', 600);
-          setTimeout(()=> container.style.transform = 'scale(1.04)', 1200);
-          setTimeout(()=> container.style.transform = 'scale(1)', 1800);
-          setTimeout(()=> container.style.transform = 'scale(1.02)', 2400);
-          setTimeout(()=> container.style.transform = 'scale(1)', 3000);
-        }
-        setTimeout(resolve, 3000);
-      }, appearDelay);
-    });
-
-    // 6) "Inflándose" final: quick gentle scale up before explosion (0.45s)
-    if(container.animate){
-      container.animate([{transform:'scale(1)'},{transform:'scale(1.12)'}], {duration:450, fill:'forwards', easing:'ease-out'});
-    } else {
-      container.style.transition='transform .45s ease-out';
-      container.style.transform='scale(1.12)';
-    }
-    // short pause to feel the inflation
-    await new Promise(r=>setTimeout(r,470));
-
-    // 7) EXPLOSIÓN: corazones salen suave y no tan rápidos — duración ~1.1s
-    hearts.forEach((h, idx)=>{
-      const angle = Math.random() * Math.PI * 2;
-      // dist moderada para suavidad
-      const dist = 22 + Math.random()*46; // vw/vh
-      const dx = Math.cos(angle) * dist;
-      const dy = Math.sin(angle) * dist;
-      const rot = (Math.random()*360 - 180);
-      const sc = 0.9 + Math.random()*1.15;
-
-      // transición más suave y con menor velocidad que antes
-      h.style.transition = 'transform 1.1s cubic-bezier(.22,.9,.24,1), opacity 1.6s ease';
-      h.style.transform = `translate(${dx}vw, ${dy}vh) rotate(${rot}deg) scale(${sc})`;
-      // llevar opacidad a casi invisible de forma fluida
-      h.style.opacity = '0';
-      // remover tras ~1400ms para limpieza
-      setTimeout(()=> { try{ h.remove(); } catch(e){} }, 1400 + idx*4);
-    });
-
-    // limpiar contenedor unos 1600ms después
-    setTimeout(()=> { try{ container.remove(); } catch(e){} }, 1600 + hearts.length*4);
-
-    // permitir reactivación después de la secuencia
-    // damos un pequeño tiempo extra antes de permitir re-run para evitar choques
-    setTimeout(()=> { running = false; }, 1800);
-
-    // opcional: restablecer segunda página visibles si deseas (NO lo hacemos para no tocar páginas 1/2)
-  } // end runSequence
-
-  // click handler que permite re-ejecuciones mientras la segunda página siga visible
-  function onDocClick(e){
-    if(!finalReady) return;
-    if(!secondShown()) return; // seguridad
-    // si ya hay una secuencia en curso, ignorar
-    if(running) return;
-    // arrancar
-    runSequence();
-  }
-
-  function secondShown(){
-    return title.classList.contains('show') && flowers.classList.contains('show') && messageBox.classList.contains('show');
-  }
-
-  // Escuchador en captura para priorizar esta acción; no elimina otros listeners
-  document.addEventListener('click', onDocClick, true);
-
-})(); // addFinalBehavior()
+})();
 </script>
 </body>
 </html>
